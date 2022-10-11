@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-md-8">
+    <h2>Edit Contact</h2>
+    <% if (!contact) {%>
+    <div class="alert alert-danger" role="alert">
+      Data contact tidak ada
+      <a href="/contact" class="alert-link">< Kembali</a>.
+    </div>
+    <% } else { %>
+    <span></span>
+    <% if (typeof errors != 'undefined') { %>
+    <div class="alert alert-danger" role="alert">
+      <ul>
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+    </div>
+    <% } %>
+
+    <form method="post" action="/contact?_method=PUT">
+      <input type="hidden" name="id" value="<%= contact._id %>" />
+      <div class="form-group">
+        <div class="form-group">
+          <label for="exampleInput1">Nama</label>
+          <input
+            type="text"
+            name="nama"
+            class="form-control"
+            id="exampleInput1"
+            placeholder="Nama"
+            value="<%= contact.nama %>"
+          />
+        </div>
+        <label for="exampleInputEmail1">Email address</label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          value="<%= contact.email %>"
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >We'll never share your email with anyone else.</small
+        >
+      </div>
+      <div class="form-group">
+        <label for="exampleInput2">No HP</label>
+        <input
+          type="text"
+          name="nohp"
+          class="form-control"
+          id="exampleInput2"
+          placeholder="No Hp"
+          value="<%= contact.nohp %>"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+    <% } %>
+  </div>
+</div>
